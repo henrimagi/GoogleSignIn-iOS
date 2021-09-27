@@ -151,6 +151,12 @@ typedef void (^GIDDisconnectCallback)(NSError *_Nullable error);
 ///     block will be called asynchronously on the main queue.
 - (void)disconnectWithCallback:(nullable GIDDisconnectCallback)callback;
 
+- (void)signInWithConfiguration:(GIDConfiguration *)configuration
+       presentingViewController:(UIViewController *)presentingViewController
+                         scopes:(NSArray<NSString *> *)scopes
+                           hint:(nullable NSString *)hint
+                       callback:(nullable GIDSignInCallback)callback;
+
 @end
 
 NS_ASSUME_NONNULL_END

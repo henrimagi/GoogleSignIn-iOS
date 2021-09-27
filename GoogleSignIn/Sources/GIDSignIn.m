@@ -334,6 +334,21 @@ static const NSTimeInterval kMinimumRestoredAccessTokenTimeToExpire = 600.0;
   }];
 }
 
+- (void)signInWithConfiguration:(GIDConfiguration *)configuration
+       presentingViewController:(UIViewController *)presentingViewController
+                         scopes:(NSArray<NSString *> *)scopes
+                           hint:(nullable NSString *)hint
+                       callback:(nullable GIDSignInCallback)callback {
+    GIDSignInInternalOptions *options =
+        [GIDSignInInternalOptions defaultOptionsWithConfiguration:configuration
+                                         presentingViewController:presentingViewController
+                                                        loginHint:hint
+                                                         callback:callback];
+
+    options.scopes = [GIDScopes scopesWithBasicProfile:scopes];
+    [self signInWithOptions:options];
+}
+
 #pragma mark - Custom getters and setters
 
 + (GIDSignIn *)sharedInstance {
